@@ -31,6 +31,9 @@ BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xcb-dri3)
 BuildRequires:  pkgconfig(xcb-present)
 
+# Required for directory ownership
+Requires:       libglvnd-egl%{?_isa}
+
 %description
 This is an EGL platform library for the NVIDIA driver to support XWayland via
 xlib (using EGL_KHR_platform_x11) or xcb (using EGL_EXT_platform_xcb).
