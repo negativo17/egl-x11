@@ -1,17 +1,17 @@
-%global commit0 c616565cb830a23ac69ddd3c78251711646a11a2
-%global date 20241120
+%global commit0 0558d54cdbc563706d44671ba7d846fc12b96485
+%global date 20250324
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 #global tag %{version}
 
 Name:           egl-x11
-Version:        1.0.0%{!?tag:^%{date}git%{shortcommit0}}
-Release:        3%{?dist}
+Version:        1.0.1%{!?tag:~%{date}git%{shortcommit0}}
+Release:        5%{?dist}
 Summary:        NVIDIA XLib and XCB EGL Platform Library
 License:        Apache-2.0
 URL:            https://github.com/NVIDIA/egl-x11
 
 %if 0%{?tag:1}
-Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 %else
 Source0:        %{url}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 %endif
@@ -22,7 +22,7 @@ BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  pkgconfig(eglexternalplatform) >= 1.2
 BuildRequires:  pkgconfig(egl)
-BuildRequires:  pkgconfig(gbm) >= 21.3.0
+BuildRequires:  pkgconfig(gbm) >= 21.2.0
 BuildRequires:  pkgconfig(libdrm) >= 2.4.99
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(x11-xcb)
@@ -60,13 +60,31 @@ rm -fv %{buildroot}%{_libdir}/*.so
 %license LICENSE
 %doc README.md
 %{_libdir}/libnvidia-egl-xcb.so.1
-%{_libdir}/libnvidia-egl-xcb.so.1.0.0
+%{_libdir}/libnvidia-egl-xcb.so.1.0.1
 %{_libdir}/libnvidia-egl-xlib.so.1
-%{_libdir}/libnvidia-egl-xlib.so.1.0.0
+%{_libdir}/libnvidia-egl-xlib.so.1.0.1
 %{_datadir}/egl/egl_external_platform.d/20_nvidia_xcb.json
 %{_datadir}/egl/egl_external_platform.d/20_nvidia_xlib.json
 
 %changelog
+* Thu Mar 27 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1~20250324git0558d54-5
+- Update to latest snapshot.
+
+* Mon Mar 24 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1~20250320git4c691fa-4
+- Update to latest snapshot.
+
+* Mon Mar 17 2025 Simone Caronni <negativo17@gmail.com> - 1.0.1~20250311gitb403f3a-3
+- Update to latest snapshot.
+
+* Thu Jan 16 2025 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1~20241213git61e70b0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
+* Mon Dec 16 2024 Simone Caronni <negativo17@gmail.com> - 1.0.1~20241213git61e70b0-1
+- Update to 1.0.1 pre-release snapshot.
+
+* Thu Dec 12 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0-4
+- Update to final 1.0.0 (no change).
+
 * Mon Nov 25 2024 Simone Caronni <negativo17@gmail.com> - 1.0.0^20241120gitc616565-3
 - Update to latest snapshot.
 
